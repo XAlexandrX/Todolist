@@ -1,18 +1,18 @@
 import React from 'react';
 import './App.css';
-import {Todolist} from "./Todolist";
+import {TaskType, Todolist} from "./Todolist";
 
 
 
 function App() {
 
-        const tasks1 = [
+        const tasks1: Array<TaskType> = [
                 {id: 1, title: 'HTML&CSS', isDone: true },
                 {id: 2, title: 'JS', isDone: true },
                 {id: 3, title: 'RectJS', isDone: false },
             ]
 
-        const tasks2 = [
+        const tasks2: Array<TaskType> = [
             {id: 1, title: 'Hello world', isDone: true },
             {id: 2, title: 'I am Happy', isDone: false },
             {id: 3, title: 'Yo', isDone: false },
