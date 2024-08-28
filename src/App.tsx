@@ -2,11 +2,6 @@ import React from 'react';
 import './App.css';
 import {Todolist} from "./Todolist";
 
-type TaskType = {
-    id: number
-    title: string
-    isDone: boolean
-}
 
 
 function App() {
@@ -29,7 +24,6 @@ function App() {
         <div className="App">
             <Todolist title = "What to learn" tasks={tasks1} />
             <Todolist title = "Songs" tasks={tasks2}/>
-            <Todolist title = "Books" />
         </div>
     );
 }

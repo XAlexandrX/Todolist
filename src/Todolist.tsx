@@ -1,12 +1,18 @@
 import React from 'react';
 
+type TaskType = {
+    id: number
+    title: string
+    isDone: boolean
+}
+
 
 type TodolistPropsType = {
     title: string
     tasks: TaskType[]
 }
 
-export const Todolist = (props: TodolistPropsType ) => {
+export const Todolist = (props: TodolistPropsType) => {
     return (
         <div>
             <h3>{props.title}</h3>
