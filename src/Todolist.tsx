@@ -15,32 +15,39 @@ type TodolistPropsType = {
 }
 
 export const Todolist = (props: TodolistPropsType) => {
-    const tasksList: Array<JSX.Element> = props.tasks.map((t: TasksType) => {
-        return (
-            <li>
-                <input type="checkbox" checked={t.isDone} />
-                <span>{t.title}</span>
-            </li>
-        )
-    })
 
-    return (
-        <div className="todolist">
-            <h3>{props.title}</h3>
-            <div>
-                <input/>
-                <button>+</button>
-            </div>
-            <ul>
-                {tasksList}
-            </ul>
-            <div>
-                <Button title="All"/>
-                <Button title="Active"/>
-                <Button title="Completed" />
-            </div>
+    let tasksList = props.tasks.length === 0
+        ? <div>ВАш список дел пуст</div>
+        : <ul>
+            {
+                props.tasks.map((t: TasksType) => {
+                    return (
+                        <li>
+                            <input type="checkbox" checked={t.isDone}/>
+                            <span>{t.title}</span>
+                        </li>
+                    )
+                })}
+        </ul>
 
-        </div>
-    );
+                return (
+                <div className="todolist">
+                <h3>{props.title}</h3>
+    <div>
+        <input/>
+        <button>+</button>
+    </div>
+    <ul>
+        {tasksList}
+    </ul>
+    <div>
+        <Button title="All"/>
+        <Button title="Active"/>
+        <Button title="Completed"/>
+    </div>
+
+</div>
+)
+    ;
 };
 
