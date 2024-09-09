@@ -14,8 +14,10 @@ type TodolistPropsType = {
 }
 
 export const Todolist = (props: TodolistPropsType) => {
+    props.tasks.map()
+
     return (
-        <div>
+        <div className="todolist">
             <h3>{props.title}</h3>
             <div>
                 <input/>
