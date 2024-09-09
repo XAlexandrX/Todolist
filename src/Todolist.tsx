@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type TaskType = {
+export type TasksType = {
     id: number
     title: string
     isDone: boolean
@@ -9,12 +9,19 @@ export type TaskType = {
 
 type TodolistPropsType = {
     title: string
-    tasks: Array<TaskType>
+    tasks: Array<TasksType>
     date?: string
 }
 
 export const Todolist = (props: TodolistPropsType) => {
-    props.tasks.map()
+    const tasksList: Array<JSX.Element> = props.tasks.map((t: TasksType) => {
+        return (
+            <li>
+                <input type="checkbox" checked={t.isDone} />
+                <span>{t.title}</span>
+            </li>
+        )
+    })
 
     return (
         <div className="todolist">
@@ -24,9 +31,7 @@ export const Todolist = (props: TodolistPropsType) => {
                 <button>+</button>
             </div>
             <ul>
-                <li><input type="checkbox" checked={props.tasks[0].isDone}/> <span>{props.tasks[0].title}</span></li>
-                <li><input type="checkbox" checked={props.tasks[1].isDone}/> <span>{props.tasks[1].title}</span></li>
-                <li><input type="checkbox" checked={props.tasks[2].isDone}/> <span>{props.tasks[2].title}</span></li>
+                {tasksList}
             </ul>
             <div>
                 <button>All</button>
