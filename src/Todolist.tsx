@@ -35,15 +35,15 @@ export const Todolist = (props: TodolistPropsType) => {
                 <h3>{props.title}</h3>
     <div>
         <input/>
-        <button>+</button>
+        <button title={'+'} />
     </div>
     <ul>
         {tasksList}
     </ul>
     <div>
-        <Button title="All"/>
-        <Button title="Active"/>
-        <Button title="Completed"/>
+        <Button title={'All'}/>
+        <Button title={'Active'}/>
+        <Button title={'Completed'}/>
     </div>
 
 </div>
