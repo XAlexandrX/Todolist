@@ -65,17 +65,17 @@ export const Todolist = (props: TodolistPropsType) => {
             <ul>
                 {
                     props.tasks.map(t => {
-                        const onClickHandler =() => props.removeTask(t.id,props.todolistId)
-                        const onChangeHandler =(e: ChangeEvent<HTMLInputElement>) => {
+                        const removeTaskHandler =() => props.removeTask(t.id,props.todolistId)
+                        const changeTaskStatusHandler =(e: ChangeEvent<HTMLInputElement>) => {
                             props.changeTaskStatus(t.id, e.currentTarget.checked,props.todolistId);
                         }
 
                         return <li key={t.id} className={t.isDone ? "is-done" : ""}>
                             <input type="checkbox"
                                    checked={t.isDone}
-                                   onChange={onChangeHandler}/>
+                                   onChange={changeTaskStatusHandler}/>
                             <span>{t.title}</span>
-                            <button onClick={onClickHandler}>x</button>
+                            <button onClick={removeTaskHandler}>x</button>
                         </li>
                     })
                 }
@@ -93,5 +93,3 @@ export const Todolist = (props: TodolistPropsType) => {
         </div>
     )
 }
-// трушка
-//... летим
