@@ -26,8 +26,8 @@ export type TasksStateType = {
 function App() {
 
 
-    const todolistId_1 = v1()
-    const todolistId_2 = v1()
+    let todolistId_1 = v1()
+    let todolistId_2 = v1()
 
     const [todolists, setTodolists] = useState<Array<TodolistType>>(
         [
@@ -74,6 +74,14 @@ function App() {
         setTasks(nextState)
     }
 
+    const changeTaskTitle = (taskId: string, title: string, todolistId: string) => {
+        const nextState: TasksStateType = {
+            ...tasks,
+            [todolistId]: tasks[todolistId].map(t => t.id === taskId ? {...t, title} : t)
+        }
+        setTasks(nextState)
+    }
+
 
 
  //Todolist
@@ -102,6 +110,13 @@ function App() {
         setTasks({...tasks, [todolistId]: []})
     }
 
+    const changeTodolistTitle = (title: string, todolistId: string) => {
+        const newTodolistTitle: Array<TodolistType> = todolists.map(tl =>{
+            return tl.id === todolistId ? {...tl, title} : tl
+        })
+        setTodolists(newTodolistTitle)
+    }
+
 
     const todolistsComponents = todolists.map(tl => {
 
@@ -125,6 +140,8 @@ function App() {
                 addTask={addTask}
                 changeTaskStatus={changeTaskStatus}
                 removeTodolist={removeTodolist}
+                changeTodolistTitle={changeTodolistTitle}
+                changeTaskTitle={changeTaskTitle }
 
             />
         )
