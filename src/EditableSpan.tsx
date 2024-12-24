@@ -1,4 +1,5 @@
 import {ChangeEvent, useState} from "react";
+import {Input} from "@mui/material";
 
 type EditableSpanPropsType = {
     title: string
@@ -19,7 +20,7 @@ export const EditableSpan = ({title, changeTitle}:EditableSpanPropsType) => {
     }
     return (
         editMode
-            ? <input
+            ? <Input
                 value={itemTitle}
                 autoFocus
                 onBlur={offEditMode}

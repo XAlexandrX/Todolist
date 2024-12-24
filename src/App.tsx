@@ -3,6 +3,9 @@ import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
+import {AppBar, Container, Grid2, IconButton, Paper, Toolbar,} from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu'
+import Button from "@mui/material/Button";
 
 export type TaskType = {
     id: string
@@ -129,21 +132,24 @@ function App() {
         }
 
         return (
-            <Todolist
-                key={tl.id}
-                title={tl.title}
-                filter={tl.filter}
-                tasks={tasksForTodolist}
-                todolistId={tl.id}
-                removeTask={removeTask}
-                changeTodolistFilter={changeTodolistFilter}
-                addTask={addTask}
-                changeTaskStatus={changeTaskStatus}
-                removeTodolist={removeTodolist}
-                changeTodolistTitle={changeTodolistTitle}
-                changeTaskTitle={changeTaskTitle }
+            <Paper elevation={8} sx={{p: "15px"}}>
+                <Todolist
+                    key={tl.id}
+                    title={tl.title}
+                    filter={tl.filter}
+                    tasks={tasksForTodolist}
+                    todolistId={tl.id}
+                    removeTask={removeTask}
+                    changeTodolistFilter={changeTodolistFilter}
+                    addTask={addTask}
+                    changeTaskStatus={changeTaskStatus}
+                    removeTodolist={removeTodolist}
+                    changeTodolistTitle={changeTodolistTitle}
+                    changeTaskTitle={changeTaskTitle }
 
-            />
+                />
+            </Paper>
+
         )
     })
 
@@ -152,8 +158,29 @@ function App() {
 
     return (
         <div className="App">
-            <AddItemForm addItem={addTodolist} />
-            {todolistsComponents}
+
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton color="inherit">
+                        <MenuIcon />
+                    </IconButton>
+                    <Button color="inherit" variant="outlined">Login</Button>
+                </Toolbar>
+            </AppBar>
+
+            <Container fixed>
+
+                <Grid2 container>
+                    <AddItemForm addItem={addTodolist} />
+                </Grid2>
+
+                <Grid2 container spacing={4}>
+                        {todolistsComponents}
+                </Grid2>
+
+            </Container>
+
+
         </div>
     );
 
