@@ -42,7 +42,6 @@ function App() {
         [todolistId_1]: [
             {id: v1(), title: 'HTML&CSS', isDone: true},
             {id: v1(), title: 'JS', isDone: true},
-            {id: v1(), title: 'ReactJS', isDone: false},
             {id: v1(), title: 'Redux', isDone: false}
         ],
         [todolistId_2]: [
@@ -170,7 +169,7 @@ function App() {
 
             <Container fixed>
 
-                <Grid2 container>
+                <Grid2 container sx={{p: "15px 0"}}>
                     <AddItemForm addItem={addTodolist} />
                 </Grid2>
 

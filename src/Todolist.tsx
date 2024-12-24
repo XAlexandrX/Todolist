@@ -3,7 +3,7 @@ import {FilterValuesType, TaskType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 import Button from '@mui/material/Button'
-import {IconButton} from "@mui/material";
+import {Box, IconButton} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Checkbox from '@mui/material/Checkbox';
 import List from '@mui/material/List';
@@ -59,7 +59,9 @@ export const Todolist = (props: TodolistPropsType) => {
         <div>
             <div className={"todolist-title-container"}>
                 <h3><EditableSpan title={title} changeTitle={changeTodolistTitleHandler}/></h3>
-                <Button title="x" onClick={() => removeTodolist(todolistId)}/>
+                <IconButton onClick={() => removeTodolist(todolistId)}>
+                    <DeleteIcon/>
+                </IconButton>
             </div>
 
 
@@ -78,26 +80,36 @@ export const Todolist = (props: TodolistPropsType) => {
                             changeTaskStatus(t.id, e.currentTarget.checked, todolistId);
                         }
 
-                        return <ListItem disablePadding key={t.id} className={t.isDone ? "is-done" : ""}>
+                        return <ListItem
+                            key={t.id}
+                            disablePadding
+                            className={t.isDone ? "is-done" : ""}
+                            sx={{
+                                justifyContent: "space-between",
+                                opacity: t.isDone ? 0.5 : 1,
+                            }}
+                        >
+                            <Box>
+                                <Checkbox
+                                    size="small"
+                                    checked={t.isDone}
+                                    onChange={changeTaskStatusHandler}/>
 
-                            <Checkbox
-                                size="small"
-                                checked={t.isDone}
-                                onChange={changeTaskStatusHandler}/>
 
-                            <EditableSpan title={t.title}
-                                          changeTitle={changeTaskTitleHandler}/>
-
+                                <EditableSpan title={t.title}
+                                              changeTitle={changeTaskTitleHandler}/>
+                            </Box>
                             <IconButton aria-label="delete"
                                         onClick={removeTaskHandler}>
                                 <DeleteIcon/>
                             </IconButton>
 
+
                         </ListItem>
                     })}
                 </List>
             }
-            <div>
+            <Box sx={{display: "flex",justifyContent: "space-between"}}>
                 <Button
                     size="small"
                     variant="contained"
@@ -121,7 +133,7 @@ export const Todolist = (props: TodolistPropsType) => {
                     onClick={onCompletedClickHandler}
                 >Completed
                 </Button>
-            </div>
+            </Box>
         </div>
     )
 }
