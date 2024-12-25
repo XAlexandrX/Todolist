@@ -3,9 +3,10 @@ import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
-import {AppBar, Container, Grid2, IconButton, Paper, Toolbar,} from "@mui/material";
+import {AppBar, Box, Container, Grid2, IconButton, Paper, Toolbar,} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu'
-import Button from "@mui/material/Button";
+import {MenuButton} from "./MenuButton";
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 export type TaskType = {
     id: string
@@ -155,15 +156,23 @@ function App() {
 
     //GUI
 
+    const theme = createTheme
+
     return (
+        <ThemeProvider theme={theme}>
         <div className="App">
 
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar sx={{justifyContent: "space-between"}}>
                     <IconButton color="inherit">
                         <MenuIcon />
                     </IconButton>
-                    <Button color="inherit" variant="outlined">Login</Button>
+                    <Box>
+                        <MenuButton color="inherit" variant="outlined">Login</MenuButton>
+                        <MenuButton color="inherit" variant="outlined">Logout</MenuButton>
+                        <MenuButton color="inherit" variant="outlined" background={"#0330fc"}>FAQ</MenuButton>
+                    </Box>
+
                 </Toolbar>
             </AppBar>
 
@@ -181,6 +190,7 @@ function App() {
 
 
         </div>
+        </ThemeProvider>
     );
 
 }

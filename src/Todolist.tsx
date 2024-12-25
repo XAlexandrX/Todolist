@@ -3,11 +3,12 @@ import {FilterValuesType, TaskType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 import Button from '@mui/material/Button'
-import {Box, IconButton} from "@mui/material";
+import {Box, IconButton, Typography} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Checkbox from '@mui/material/Checkbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import {filterButtonsContainerSx, getListItemSx} from "./Todolist.styles";
 
 
 type TodolistPropsType = {
@@ -58,10 +59,14 @@ export const Todolist = (props: TodolistPropsType) => {
     return (
         <div>
             <div className={"todolist-title-container"}>
-                <h3><EditableSpan title={title} changeTitle={changeTodolistTitleHandler}/></h3>
-                <IconButton onClick={() => removeTodolist(todolistId)}>
-                    <DeleteIcon/>
-                </IconButton>
+                <Typography align="center" variant="h6">
+                    <EditableSpan title={title} changeTitle={changeTodolistTitleHandler}/>
+                    <IconButton onClick={() => removeTodolist(todolistId)}>
+                        <DeleteIcon/>
+                    </IconButton>
+                </Typography>
+
+
             </div>
 
 
@@ -83,11 +88,7 @@ export const Todolist = (props: TodolistPropsType) => {
                         return <ListItem
                             key={t.id}
                             disablePadding
-                            className={t.isDone ? "is-done" : ""}
-                            sx={{
-                                justifyContent: "space-between",
-                                opacity: t.isDone ? 0.5 : 1,
-                            }}
+                            sx={getListItemSx(t.isDone)}
                         >
                             <Box>
                                 <Checkbox
@@ -109,10 +110,11 @@ export const Todolist = (props: TodolistPropsType) => {
                     })}
                 </List>
             }
-            <Box sx={{display: "flex",justifyContent: "space-between"}}>
+            <Box sx={filterButtonsContainerSx}>
                 <Button
                     size="small"
                     variant="contained"
+                    disableElevation
                     color={filter === "All" ? "secondary" : "primary"}
                     onClick={onAllClickHandler}
                 >All
@@ -121,6 +123,7 @@ export const Todolist = (props: TodolistPropsType) => {
                 <Button
                     size="small"
                     variant="contained"
+                    disableElevation
                     color={filter === "Active" ? "secondary" : "primary"}
                     onClick={onActiveClickHandler}
                 >Active
@@ -129,6 +132,7 @@ export const Todolist = (props: TodolistPropsType) => {
                 <Button
                     size="small"
                     variant="contained"
+                    disableElevation
                     color={filter === "Completed" ? "secondary" : "primary"}
                     onClick={onCompletedClickHandler}
                 >Completed
