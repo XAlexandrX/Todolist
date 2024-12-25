@@ -3,10 +3,12 @@ import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
-import {AppBar, Box, Container, Grid2, IconButton, Paper, Toolbar,} from "@mui/material";
+import {AppBar, Box, Container, CssBaseline, Grid2, IconButton, Paper, Switch, Toolbar,} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu'
 import {MenuButton} from "./MenuButton";
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import {indigo, lightBlue} from "@mui/material/colors";
+
 
 export type TaskType = {
     id: string
@@ -155,11 +157,17 @@ function App() {
 
 
     //GUI
-
-    const theme = createTheme
+    const [isDark, setIsDark] = useState(false)
+    const theme = createTheme({  palette: {
+            primary: lightBlue,
+            secondary: indigo,
+            mode: isDark ? "dark" : "light"
+        },
+    })
 
     return (
         <ThemeProvider theme={theme}>
+            <CssBaseline/>
         <div className="App">
 
             <AppBar position="static">
@@ -171,6 +179,7 @@ function App() {
                         <MenuButton color="inherit" variant="outlined">Login</MenuButton>
                         <MenuButton color="inherit" variant="outlined">Logout</MenuButton>
                         <MenuButton color="inherit" variant="outlined" background={"#0330fc"}>FAQ</MenuButton>
+                        <Switch onChange={()=> setIsDark(!isDark)}/>
                     </Box>
 
                 </Toolbar>

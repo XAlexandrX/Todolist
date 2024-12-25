@@ -5,7 +5,7 @@ type MenuButtonProps = {
     background?: string;
 }
 
-export const MenuButton = styled(Button)<MenuButtonProps>(({background})=> ({
+export const MenuButton = styled(Button)<MenuButtonProps>(({background,})=> ({
     minWidth: '110px',
     fontWeight: 'bold',
     boxShadow: '0 0 0 2px #054B62, 4px 4px 0 0 #054B62',
