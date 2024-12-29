@@ -1,6 +1,7 @@
 // create new state
 
 import {FilterValuesType, TodolistType} from "../App";
+import {v1} from "uuid";
 
 
 export type RemoveTodolistAT = {
@@ -77,11 +78,11 @@ export const RemoveTodolistAC = (id:string):RemoveTodolistAT => {
         })
 }
 
-export const AddTodolistAC = (id: string, title: string): AddTodolistAT => {
+export const AddTodolistAC = (title: string): AddTodolistAT => {
     return ({
         type: "ADD-TODOLIST",
         payload: {
-            id,
+            id: v1(),
             title,
         },
     })
