@@ -91,8 +91,8 @@ function App() {
 
  //Todolist
     const changeTodolistFilter = (filter: FilterValuesType, todolistId: string) => {
-        const nextState: Array<TodolistType> = todolists.map(tl => tl.id === todolistId ? {...tl, filter} : tl)
-        setTodolists(nextState)
+        setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, filter} : tl))
+
     }
 
     const removeTodolist = (todolistId: string) => {
@@ -116,11 +116,9 @@ function App() {
     }
 
     const changeTodolistTitle = (title: string, todolistId: string) => {
-        const newTodolistTitle: Array<TodolistType> = todolists.map(tl =>{
-            return tl.id === todolistId ? {...tl, title} : tl
-        })
-        setTodolists(newTodolistTitle)
-    }
+        setTodolists(todolists.map(tl=>tl.id === todolistId ? {...tl, title} : tl)
+        )}
+
 
 
     const todolistsComponents = todolists.map(tl => {
