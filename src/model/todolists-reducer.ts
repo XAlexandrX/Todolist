@@ -1,6 +1,7 @@
 // create new state
 
-import {TodolistType} from "../App";
+import {FilterValuesType, TodolistType} from "../App";
+
 
 export type RemoveTodolistAT = {
     type: "REMOVE-TODOLIST"
@@ -32,7 +33,7 @@ export type ChangeTodolistFilterAT = {
     type: "CHANGE-TODOLIST-FILTER"
     payload: {
         id: string,
-        filter: "Completed",
+        filter: FilterValuesType,
     }
 }
 
@@ -64,5 +65,45 @@ export const todolistsReducer = (todolists: Array<TodolistType>, action:ActionTy
         default:
             return todolists
     }
+
+}
+
+export const RemoveTodolistAC = (id:string):RemoveTodolistAT => {
+    return ({
+            type: "REMOVE-TODOLIST",
+            payload: {
+                id,
+            },
+        })
+}
+
+export const AddTodolistAC = (id: string, title: string): AddTodolistAT => {
+    return ({
+        type: "ADD-TODOLIST",
+        payload: {
+            id,
+            title,
+        },
+    })
+}
+
+export const ChangeTodolistTitleAC = (id: string, title: string):ChangeTodolistTitleAT => {
+    return({
+        type: "CHANGE-TODOLIST-TITLE",
+        payload: {
+            id: id,
+            title: title,
+        }
+    })
+}
+
+export const ChangeTodolistFilterAC = (id: string, filter: FilterValuesType):ChangeTodolistFilterAT => {
+    return({
+        type: "CHANGE-TODOLIST-FILTER" ,
+        payload: {
+            id,
+            filter,
+        },
+    })
 
 }
